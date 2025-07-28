@@ -1,0 +1,131 @@
+/* Toast.css */
+.toast-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-width: 400px;
+}
+
+.toast {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  padding: 18px 25px;
+  padding-right: 45px;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+  color: white;
+  opacity: 0;
+  transform: translateX(100%);
+  animation: slideIn 0.3s forwards;
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.toast::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 5px;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.3);
+  animation: progress linear;
+  animation-duration: inherit;
+}
+
+@keyframes slideIn {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes progress {
+  from {
+    width: 100%;
+  }
+  to {
+    width: 0;
+  }
+}
+
+.toast.toast-success {
+  background: #4caf50;
+}
+
+.toast.toast-warning {
+  background: #ff9800;
+}
+
+.toast.toast-error {
+  background: #f44336;
+}
+
+.toast-icon {
+  font-size: 1.5rem;
+  margin-right: 15px;
+  flex-shrink: 0;
+}
+
+.toast-content {
+  flex-grow: 1;
+  line-height: 1.5;
+}
+
+.toast-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 1.1rem;
+  cursor: pointer;
+  opacity: 0.7;
+  padding: 5px;
+  transition: opacity 0.2s;
+}
+
+.toast-close:hover {
+  opacity: 1;
+}
+
+.toast-demo-buttons {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  gap: 10px;
+}
+
+.toast-demo-buttons button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.toast-demo-buttons button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.btn-success {
+  background: #4caf50;
+}
+
+.btn-warning {
+  background: #ff9800;
+}
+
+.btn-error {
+  background: #f44336;
+}
