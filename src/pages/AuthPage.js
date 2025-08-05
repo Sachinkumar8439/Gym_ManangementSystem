@@ -26,8 +26,8 @@ const LoginPage = ({user,setuser}) => {
       setuser(response.user);
       navigate("/admin")
 
-    }else{
-      alert(response.message)
+    } else{
+      alert(response.message);
     }
     setloading(false);
   };
@@ -37,6 +37,9 @@ const LoginPage = ({user,setuser}) => {
     const response = await appwriteAuth.signUp(formdata.email,formdata.password,formdata.name,formdata.mobile)
     if(response.success){
       alert(response.message);
+    }
+    else{
+      alert("ERROR :",response.message);
     }
   };
 
