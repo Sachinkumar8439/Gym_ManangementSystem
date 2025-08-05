@@ -12,7 +12,6 @@ console.log("this is base url",BASE_URL);
 export const appwriteAuth = {
   async signUp(email, password,name,phone) {
     try {
-      console.log(name);
       const user = await account.create(ID.unique(), email, password,name);
       console.log("User created:", user);
 
@@ -38,7 +37,6 @@ export const appwriteAuth = {
   async login(email, password) {
     try {
       const session = await account.createEmailPasswordSession(email, password);
-      console.log("this is sesssion ",session);
       const user = await account.get();
 
       if (!user.emailVerification) {

@@ -5,10 +5,8 @@ const databases = new Databases(client);
 
 const databaseId = process.env.REACT_APP_APPWRITE_DATABASE_ID;
 const memberCollectionId = process.env.REACT_APP_APPWRITE_COLLECTION_ID;
-console.log(databaseId)
-console.log(memberCollectionId)
 
-// ✅ Add a new member
+
 export const addMember = async (userId, memberData) => {
   if (!userId || !memberData) return { success: false, message: 'Missing parameters' };
 
@@ -31,7 +29,6 @@ export const addMember = async (userId, memberData) => {
   }
 };
 
-// ✅ Get all members for a user
 export const getMembers = async (userId) => {
   if (!userId) return { success: false, message: 'User ID required' };
 
@@ -48,7 +45,6 @@ export const getMembers = async (userId) => {
   }
 };
 
-// ✅ Delete a member
 export const deleteMember = async (userId, memberId) => {
   if (!userId || !memberId) return { success: false, message: 'Missing parameters' };
 
@@ -66,7 +62,6 @@ export const deleteMember = async (userId, memberId) => {
   }
 };
 
-// ✅ Update a member
 export const updateMember = async (userId, memberId, updates) => {
   if (!userId || !memberId || !updates) return { success: false, message: 'Missing parameters' };
 

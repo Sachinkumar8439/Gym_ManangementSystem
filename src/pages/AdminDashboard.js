@@ -2,12 +2,10 @@
 import React, { useState, useEffect } from 'react';
 import { useToast } from '../contexts/ToastContext';
 import { 
-  Routes, 
-  Route, 
   Link, 
   useLocation,
   useNavigate, 
-  Navigate ,
+ 
   Outlet ,
 } from 'react-router-dom';
 import '@fortawesome/fontawesome-free/css/all.min.css';
@@ -48,12 +46,10 @@ const AdminDashboard = ({user,setuser}) => {
     }
   }
 
-  // Get current path segment after "/admin/"
   const currentPath = location.pathname.split('/')[2] || '';
 
   return (
     <div className="admin-dashboard">
-      {/* Mobile Menu Button */}
       <button 
         id="menuBtn" 
         className="mobile-menu-button"
@@ -62,7 +58,6 @@ const AdminDashboard = ({user,setuser}) => {
         <i className="fas fa-bars"></i>
       </button>
 
-      {/* Sidebar */}
       <div 
         id="sidebar" 
         className={`sidebar ${sidebarOpen ? 'open' : ''}`}
@@ -137,11 +132,10 @@ const AdminDashboard = ({user,setuser}) => {
         </nav>
       </div>
 
-      {/* Main Content */}
       <div className="main-content">
         <div className="content-container">
           <div id="content" className="content-area">
-            <Outlet /> {/* Render nested route component here */}
+            <Outlet />
           </div>
         </div>
       </div>
@@ -150,7 +144,6 @@ const AdminDashboard = ({user,setuser}) => {
 };
 
 
-// Content Sections
 export const DashboardSection = () => (
   <>
     <h1>Admin Dashboard</h1>
@@ -201,7 +194,6 @@ export const AddMemberSection = ({user,setmembers,members}) =>{
   }
   const handlecreatemember = async(e)=>{
     e.preventDefault();
-    console.log(member,members)
     const isvalidemail = members?.some(memb => memb.email === member.email);
     if(isvalidemail){
       seterror("this email is used by other user please enter another email");
@@ -209,14 +201,12 @@ export const AddMemberSection = ({user,setmembers,members}) =>{
     }
     
     const res = await convertAndValidateDate(member.startdate)
-    console.log(res)
     if(!res.valid){
       console.log(res.message)
       seterror(res.message)
       return
     }
     setisadding(true);
-    console.log(member)
 
     const response = await addMember(user?.$id,member)
     if(response.success){
@@ -224,7 +214,6 @@ export const AddMemberSection = ({user,setmembers,members}) =>{
       resetmember(setmember);
       setmembers((pre) => [response.data, ...pre]);
     }
-    console.log(response);
 
     setisadding(false)
   }
@@ -294,7 +283,6 @@ export const AddMemberSection = ({user,setmembers,members}) =>{
 export const ManageMembersSection = ({members,setmembers}) => {
 
   const handledelete = async(m)=>{
-    console.log(m)
     const response = await deleteMember(m.userId,m?.$id);
   if (response.success) {
   setmembers((pre) => pre.filter(user => user.$id !== m.$id));
@@ -338,37 +326,6 @@ export const ManageMembersSection = ({members,setmembers}) => {
             </td>
           </tr>
           ))}
-         
-          {/* <tr>
-            <td>#1002</td>
-            <td>Sarah Johnson</td>
-            <td>VIP</td>
-            <td><span className="status active">Active</span></td>
-            <td>
-            <button className="action-button"><i className="fas fa-edit"></i></button>
-            <button className="action-button"><i className="fas fa-trash"></i></button>
-            </td>
-            </tr> */}
-          {/* <tr>
-            <td>#1003</td>
-            <td>Michael Brown</td>
-            <td>Basic</td>
-            <td><span className="status expired">Expired</span></td>
-            <td>
-            <button className="action-button"><i className="fas fa-edit"></i></button>
-            <button className="action-button"><i className="fas fa-trash"></i></button>
-            </td>
-            </tr>
-            <tr>
-            <td>#1004</td>
-            <td>Emily Davis</td>
-            <td>Premium</td>
-            <td><span className="status active">Active</span></td>
-            <td>
-            <button className="action-button"><i className="fas fa-edit"></i></button>
-            <button className="action-button"><i className="fas fa-trash"></i></button>
-            </td>
-            </tr> */}
         </tbody>
       </table>
     </div>

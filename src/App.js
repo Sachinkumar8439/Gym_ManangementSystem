@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import Loginpage from './pages/AuthPage';
 import {
@@ -12,32 +11,21 @@ import {
   ExportReportSection
 } from './pages/AdminDashboard';
 import AdminDashboard from './pages/AdminDashboard';
-// import CreateBillSection from './components/admin/CreateBillSection';
-// import AssignFeeSection from './components/admin/AssignFeeSection';
-// import SendNotificationSection from './components/admin/SendNotificationSection';
-// import SupplementStoreSection from './components/admin/SupplementStoreSection';
-// import DietDetailsSection from './components/admin/DietDetailsSection';
-// import ExportReportSection from './components/admin/ExportReportSection';
-// App.jsx
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import Verify from './pages/verify';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { appwriteAuth } from './Auth/Appwriteauth';
 import { getMembers } from './helper/appwritehelper';
-import ToastContainer from './components/Toast';
 
 
  const response = await appwriteAuth.getUser();
- console.log("this is geted user",response);
  const memberdata = await getMembers(response.user?.$id);
- console.log("this is meber data",memberdata);
 
 
 export default function App() {
   const [members,setmembers] = useState(memberdata?.members || []);
   const [user,setuser] = useState(response?.user || null);
-  // useEffect(()=>{
-  // })
+
   return (
     <>
       <Routes>
@@ -55,7 +43,6 @@ export default function App() {
           <Route path="export-report" element={<ExportReportSection />} />
         </Route>
       </Routes>
-      {/* <ToastContainer/> */}
     </>
       
   );

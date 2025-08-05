@@ -1,5 +1,4 @@
  export async function convertAndValidateDate(dateStr) {
-  // Match the format DD/MM/YYYY using RegEx
   const datePattern = /^(\d{2})\/(\d{2})\/(\d{4})$/;
   const match = dateStr.match(datePattern);
 
@@ -12,7 +11,6 @@
   const month = parseInt(monthStr, 10);
   const year = parseInt(yearStr, 10);
 
-  // Basic range check
   if (month < 1 || month > 12) {
     return { valid: false, message: "Month must be between 01 and 12." };
   }
@@ -20,10 +18,8 @@
     return { valid: false, message: "Day must be between 01 and 31." };
   }
 
-  // Create the date (months are 0-indexed in JS)
   const date = new Date(year, month - 1, day);
 
-  // Validate against auto-corrected date
   if (
     date.getFullYear() !== year ||
     date.getMonth() !== month - 1 ||

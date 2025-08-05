@@ -20,7 +20,6 @@ const LoginPage = ({user,setuser}) => {
 
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
-    console.log(formdata);
     setloading(true);
     const response = await appwriteAuth.login(formdata.email,formdata.password)
     if(response.success){
@@ -31,23 +30,14 @@ const LoginPage = ({user,setuser}) => {
       alert(response.message)
     }
     setloading(false);
-    console.log(response);
-
-    // console.log(formdata);
-
-
-    // Login logic here
   };
 
   const handleRegisterSubmit =async (e) => {
     e.preventDefault();
-    console.log(formdata)
     const response = await appwriteAuth.signUp(formdata.email,formdata.password,formdata.name,formdata.mobile)
-    console.log(response);
     if(response.success){
       alert(response.message);
     }
-    // Registration logic here
   };
 
   return (
